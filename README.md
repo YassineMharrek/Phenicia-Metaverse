@@ -1,5 +1,21 @@
 # Phenicia Metaverse
+![alt text](https://github.com/YassineMharrek/Phenicia-Metaverse/blob/main/Pictures/Phenicia-metaverse.PNG)
 
+
+# Tokenomics
+What Is the TANIT Token?
+
+The native token of the Phenicia metaverse. Developed on Polygone (very popular layer 2 Blockchain).
+
+MAX SUPPLY = 10 billion TANIT (Safe from infinite minting and inflation will be released periodically to keep the tokenomics and allocation as follow on the table)
+
+INITIAL SUPPLY = 1 350 000 000 TANIT(TNT) (DEX Release)
+
+INITIAL MARKETCAP TARGET= 400 000$
+
+![alt text](https://github.com/YassineMharrek/Phenicia-Metaverse/blob/main/Pictures/Tokenomics_1.png)
+
+# Token
 Implementing our ERC-20 token Tanit(TNT) and creating the necessary staking mechanisms 
 
 The primary benefit of staking is that you earn more crypto, and interest rates can be generous. In some cases, you can earn more than 10% or 20% per year. It's potentially a very profitable way to invest your money. And, the only thing you need is crypto that uses the proof-of-stake model. Anyhow, in our project case, staking will encourage early adopters and venture investors to hold their TANIT(TNT) assets and earn very generous returns for up to 60% per year in early years of development and that will ensure two things:
