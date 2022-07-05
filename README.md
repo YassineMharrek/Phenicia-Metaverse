@@ -105,8 +105,54 @@ Now that we created our token, we need to implement the staking mechanisms to re
 
 
 # Stakeholders
+
 We need to track our stakeholders and in order to do that, we will create a dynamic array that contains their adresses.
 ```
  address[] internal stakeholders;
 ```
 
+The following methods add a stakeholder, remove a stakeholder, and verify whether an address belongs to a stakeholder. Other more efficient implementations are surely possible but I like this one for readability.
+```
+   /**
+    * @notice A method to check if an address is a stakeholder.
+    * @param _address The address to verify.
+    * @return bool, uint256 Whether the address is a stakeholder,
+    * and if so its position in the stakeholders array.
+    */
+   function isStakeholder(address _address)
+       public
+       view
+       returns(bool, uint256)
+   {
+       for (uint256 s = 0; s < stakeholders.length; s += 1){
+           if (_address == stakeholders[s]) return (true, s);
+       }
+       return (false, 0);
+   }
+
+   /**
+    * @notice A method to add a stakeholder.
+    * @param _stakeholder The stakeholder to add.
+    */
+   function addStakeholder(address _stakeholder)
+       public
+   {
+       (bool _isStakeholder, ) = isStakeholder(_stakeholder);
+       if(!_isStakeholder) stakeholders.push(_stakeholder);
+   }
+
+   /**
+    * @notice A method to remove a stakeholder.
+    * @param _stakeholder The stakeholder to remove.
+    */
+   function removeStakeholder(address _stakeholder)
+       public
+   {
+       (bool _isStakeholder, uint256 s) = isStakeholder(_stakeholder);
+       if(_isStakeholder){
+           stakeholders[s] = stakeholders[stakeholders.length - 1];
+           stakeholders.pop();
+       }
+   }
+   
+   ```
