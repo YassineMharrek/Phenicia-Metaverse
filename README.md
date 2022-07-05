@@ -48,21 +48,24 @@ contract TanitToken is ERC20, ERC20Burnable, Ownable {
   mapping(address => bool) controllers;
   uint256 private _totalSupply;
   uint256 private MAXSUP;
- 
-  //Our maximum supply is 10 Billion token (it will be stored in a constant MAXIMUMSUPPLY)
+  
+``` 
+* Our maximum supply is 10 Billion token (it will be stored in a constant MAXIMUMSUPPLY)
 
-  //We need to convert 10 Billion to Wei (smallest decimal value)
-
+* We need to convert 10 Billion to Wei (smallest decimal value)
+```
   uint256 constant MAXIMUMSUPPLY=10000000000*10**18;
-
- //Our initial supply is 1.350 Billion
-
+```
+* Our initial supply is 1.350 Billion
+```
   constructor() ERC20("TANIT", "TNT") { 
       _mint(msg.sender, 1350000000 * 10 ** 18);
 
   }
+```
+* Minting TNT token can only be done via staking 
 
-  //Minting TNT token can only be done via staking 
+ ```
   function mint(address to, uint256 amount) external {
     require(controllers[msg.sender], "Minting is done only by staking");
     require((MAXSUP+amount)<=MAXIMUMSUPPLY,"Maximum supply has been reached");
@@ -71,7 +74,11 @@ contract TanitToken is ERC20, ERC20Burnable, Ownable {
     _balances[to] = _balances[to].add(amount);
     _mint(to, amount);
   }
+```
 
+* Adding a burn mechanism to the token is essential to have leaverage on inflation.
+
+```
   function burnFrom(address account, uint256 amount) public override {
       if (controllers[msg.sender]) {
           _burn(account, amount);
@@ -80,7 +87,7 @@ contract TanitToken is ERC20, ERC20Burnable, Ownable {
           super.burnFrom(account, amount);
       }
   }
-
+  
   function addController(address controller) external onlyOwner {
     controllers[controller] = true;
   }
@@ -89,6 +96,10 @@ contract TanitToken is ERC20, ERC20Burnable, Ownable {
     controllers[controller] = false;
   }
   
+```  
+* Total supply and max supply fuctions will helps us track the current supply of our TNT:
+ 
+ ```
   function totalSupply() public override view returns (uint256) {
     return _totalSupply;
   }
